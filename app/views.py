@@ -13,3 +13,4 @@ def event_detail(request: HttpRequest, team_name):
     title = event.get(team_name)  
     context = {'event': event}
     return render(request, 'event.html', {"form":form, "event":event})
+
