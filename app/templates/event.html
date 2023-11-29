@@ -1,5 +1,5 @@
 {% block content %}
-<form action="{% url "events" %}" method="GET">
+<form action="{% url "events" %}" method="POST">
     {% csrf_token %}
 
     {{ form.as_p }}

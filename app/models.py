@@ -2,10 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Eventlist(models.Model):
-    title = models.CharField()
+    title = models.TextField()
     date = models.DateField()
     time = models.TimeField()
-    location = models.CharField()
+    location = models.TextField()
 
 def createEvent(title, date, time, location):
     event = Eventlist(title = title, date = date, time = time, location = location)
