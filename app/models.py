@@ -1,14 +1,19 @@
+from django.utils import timezone
+from datetime import datetime
 from django.db import models
 
 # Create your models here.
 class Eventlist(models.Model):
-    title = models.TextField()
-    date = models.DateField()
-    time = models.TimeField()
-    location = models.TextField()
+    title = models.CharField(max_length=100, default="name of event")
+    date = models.DateField(default=timezone.now)
+    time = models.TimeField(default=datetime.now)
+    location = models.CharField(max_length=100, default='event location')
+
+    def propertime(self):
+        return self.time.strftime('%I:%M %p')
 
 def createEvent(title, date, time, location):
-    event = Eventlist(title = title, date = date, time = time, location = location)
+    event = Eventlist(title = title, date = date, time = time, location = "location")
     event.save()
     return event
     
