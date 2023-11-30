@@ -8,10 +8,10 @@ from app.forms import AddEventsForm
 def event_page(request:HttpRequest)->HttpResponse:
     form = AddEventsForm(request.POST)
     if form.is_valid():
-        title = form.cleaned_data['Title']
-        date = form.cleaned_data['Date']
-        time = form.cleaned_data['Time']
-        location = form.cleaned_data['Location']
+        title = form.cleaned_data['title']
+        date = form.cleaned_data['date']
+        time = form.cleaned_data['time']
+        location = form.cleaned_data['location']
         return render(request, "event.html", {"form": form, "Title":title, "Date":date, "Time":time, "Location":location})
     else:
         return render(request, "event.html", {"form":form})

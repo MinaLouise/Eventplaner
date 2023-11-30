@@ -1,14 +1,23 @@
+{% extends "base.html" %}
 {% block content %}
-<form action="{% url "events" %}" method="POST">
-    {% csrf_token %}
+    <div>
+        <form action="{% url 'events' %}" method="POST">
+            {% csrf_token %}
 
-    {{ form.as_p }}
+            {{ form.as_p }}
 
-    <button>Enter</button>
+            <button id="myBtn">Enter</button>
+        </form>
+    </div>
+    <div>
+        <form action="{% url 'events' %}" method="POST">
+            {% csrf_token %}
 
-</form>
+            {{ form.as_p }}
+        </form>
+    </div>
 
-{% if c is not None %}
-    <p>{{ c }}</p>
-{% endif %}
+    {% if c is not None %}
+        <p>{{ c }}</p>
+    {% endif %}
 {% endblock content %}

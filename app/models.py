@@ -4,7 +4,7 @@ from django.db import models
 class Eventlist(models.Model):
     title = models.TextField()
     date = models.DateField()
-    time = models.TimeField()
+    time = models.TextField()
     location = models.TextField()
 
 def createEvent(title, date, time, location):
