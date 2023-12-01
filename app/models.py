@@ -13,7 +13,7 @@ class Eventlist(models.Model):
         return self.time.strftime('%I:%M %p')
 
 def createEvent(title, date, time, location):
-    event = Eventlist(title = title, date = date, time = time, location = "location")
+    event = Eventlist(title = title, date = date, time = time, location = location)
     event.save()
     return event
     
@@ -35,7 +35,7 @@ def update(title, new_date):
     event.save()
     return event
 
-def delete(title):
-    event = Eventlist.objects.get(title=title)
+def delete(id):
+    event = Eventlist.objects.get(id=id)
     event.delete()
     return event

@@ -1,0 +1,13 @@
+body {
+    background: linear-gradient(white, rgb(96, 188, 219), rgba(128, 0, 128, 0.623), rgb(96, 188, 219), white);
+    position: static;
+}
+
+.eventscontainer{
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: .5em .2em 10px rgba(13, 73, 203, 0.801);
+    text-align: center;
+}

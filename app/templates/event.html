@@ -1,14 +1,25 @@
+{% extends "base.html" %}
 {% block content %}
-<form action="{% url "events" %}" method="POST">
-    {% csrf_token %}
 
-    {{ form.as_p }}
+    <div class="events">
+        <form action="{% url 'form' %}" method="POST">
+            {% csrf_token %}
 
-    <button>Enter</button>
+            <button>Add Event</button>
+            {% for event in events %}
+                <div class="eventscontainer">
+                    <p class="myItems">{{ event.title }}</p>
+                    <p class="myItems">{{ event.date }}</p>
+                    <p class="myItems">{{ event.time }}</p>
+                    <p class="myItems">{{ event.location }}</p>
+                    <form class="delete-form" data-event-id="{{ event.id }}">
+                        {% csrf_token %}
+                        <input type="hidden" name="event_id_to_delete" value="{{ event.id }}">
+                        <button type="button" class="delete-btn">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </form>
+    </div>
 
-</form>
-
-{% if c is not None %}
-    <p>{{ c }}</p>
-{% endif %}
 {% endblock content %}

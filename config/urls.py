@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import event_page
+from app.views import event_page, searching_page
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', event_page, name="events"),    
+    path('', searching_page, name="events"),    
+    path('form/', event_page, name="form"),
 ]

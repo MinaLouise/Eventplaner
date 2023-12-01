@@ -6,23 +6,28 @@ from app.forms import AddEventsForm
 from app.models import Eventlist
 
 # Create your views here.
+events = []
+
 def event_page(request:HttpRequest)->HttpResponse:
-    if request.method == 'POST':
-        form = AddEventsForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['Title']
-            date = form.cleaned_data['Date']
-            time = form.cleaned_data['Time']
-            location = form.cleaned_data['location']
+    form = AddEventsForm(request.POST)
+    if form.is_valid():
 
-            propertime= datetime.strptime(time, '%I:%M %p').time()
-
-            event = Eventlist(title=title, date=date, time=propertime, location="location")
-
-            event.save()
-            
-            return HttpResponse('Form submitted successfully!')
-        else:
-            return render(request, "event.html", {"form":form})
+        form.save()
+        events = Eventlist.objects.all()
+        
+        return render(request, "index.html", {"form":form, "events": events})
     else:
-        return render(request, "event.html", {"form":form})
+        events = Eventlist.objects.all()
+        return render(request, "index.html", {"form":form, "events": events})
+        
+
+def searching_page(request:HttpRequest)->HttpResponse:
+    form = AddEventsForm(request.POST)
+    if form.is_valid():
+        
+        events = Eventlist.objects.all()
+            
+        return render(request, "event.html", {"form":form, "events": events})
+    else:
+        events = Eventlist.objects.all()
+        return render(request, "event.html", {"form":form, "events": events})
