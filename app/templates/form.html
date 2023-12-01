@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<h1> Event Planner </h1>
 <div>
-    <form action="{% url 'events' %}" method="POST">
+    <form  method="POST">
         {% csrf_token %}
 
         {{ form.as_p }}
 
         <button>Enter</button>
+    </form>
+    <form action="{% url "events" %}" method="POST">
+        {% csrf_token %}
+
+        <button>Back</button>
     </form>
 </div>
 {% endblock content %}

@@ -11,3 +11,7 @@ body {
     box-shadow: .5em .2em 10px rgba(13, 73, 203, 0.801);
     text-align: center;
 }
+
+.delete{
+    display: none;
+}

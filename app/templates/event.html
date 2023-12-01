@@ -2,24 +2,46 @@
 {% block content %}
 
     <div class="events">
-        <form action="{% url 'form' %}" method="POST">
+        <form action="{% url "events" %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>search</button>
+        </form>
+        <form action="{% url "form" %}">
             {% csrf_token %}
 
             <button>Add Event</button>
+        </form>
+        <form  method="POST">
+            {% csrf_token %}
+
+            {% if not search %}
             {% for event in events %}
                 <div class="eventscontainer">
                     <p class="myItems">{{ event.title }}</p>
                     <p class="myItems">{{ event.date }}</p>
                     <p class="myItems">{{ event.time }}</p>
                     <p class="myItems">{{ event.location }}</p>
-                    <form class="delete-form" data-event-id="{{ event.id }}">
+                    <form action="{% url "deleting" %}" class="delete-form">
                         {% csrf_token %}
-                        <input type="hidden" name="event_id_to_delete" value="{{ event.id }}">
-                        <button type="button" class="delete-btn">Delete</button>
+                        
+                        <button class="delete-btn">Delete</button>
                     </form>
                 </div>
             {% endfor %}
+            {% elif search %}
+            <div class="eventscontainer">
+                <p class="myItems">{{ search.title }}</p>
+                <p class="myItems">{{ search.date }}</p>
+                <p class="myItems">{{ search.time }}</p>
+                <p class="myItems">{{ search.location }}</p>
+                <form action="{% url "deleting" %}" class="delete-form">
+                    {% csrf_token %}
+
+                    <button type="button" class="delete-btn">Delete</button>
+                </form>
+            </div>
+            {% endif %}
         </form>
     </div>
-
 {% endblock content %}

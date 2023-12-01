@@ -1,10 +1,12 @@
 from django import forms
-from app.models import Eventlist
+from django.utils import timezone
+from datetime import datetime
 
-class AddEventsForm(forms.ModelForm):
-    class Meta:
-        model = Eventlist
-        fields = ['title', 'date', 'time', 'location']
+class AddEventsForm(forms.Form):
+    title = forms.CharField()
+    date = forms.DateField()
+    time = forms.TimeField()
+    location = forms.CharField()
 
-class SearchForm(forms.Form):
-    title = forms.CharField(label='Search Event Title', max_length=100)
+class SearchEventForm(forms.Form):
+    searchtitle = forms.CharField(required=False)
