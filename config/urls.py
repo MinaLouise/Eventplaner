@@ -22,5 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', events_page, name="events"),    
     path('form/', form_page, name="form"),
-    path('delete/<pk>', delete_event, name="deleting")
+    path('delete/', delete_event, name="deleting")
 ]

@@ -1,11 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
 
     <div class="events">
-        <form action="{% url "events" %}" method="POST">
+        <p>DELETE PAGE</p>
+        <form method="POST">
             {% csrf_token %}
-            <a href="{% url "events" %}">Cancel</a>
-            <input type="submit" name="Confirm"
+            <a href="{% url 'events' %}">Cancel</a>
+            <input type="submit" name="Confirm">
         </form>
     </div>
 {% endblock content %}

@@ -35,6 +35,6 @@ def events_page(request:HttpRequest)->HttpResponse:
         events = read_all()
         return render(request, "event.html", {"form":form, "events": events})
     
-def delete_event(request:HttpRequest, pk)->HttpResponse:
+def delete_event(request:HttpRequest)->HttpResponse:
     
     return render(request, 'delete.html', {"events":events})
