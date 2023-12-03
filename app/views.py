@@ -1,5 +1,5 @@
 from django.http.request import HttpRequest
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http.response import HttpResponse
 from datetime import datetime
 from app.forms import AddEventsForm, SearchEventForm
@@ -35,6 +35,9 @@ def events_page(request:HttpRequest)->HttpResponse:
         events = read_all()
         return render(request, "event.html", {"form":form, "events": events})
     
-def delete_event(request:HttpRequest)->HttpResponse:
-    
-    return render(request, 'delete.html', {"events":events})
+def delete_event(request:HttpRequest, title)->HttpResponse:
+    if request.method == 'POST':
+        event = search_by_title(title=title)
+        event.delete()
+        return redirect('events')
+    return render(request, 'delete.html')

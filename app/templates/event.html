@@ -2,12 +2,12 @@
 {% block content %}
 
     <div class="events">
-        <form action="{% url 'events' %}" method="POST">
+        <form action="{% url 'events' %}" method="POST" class="searchTool">
             {% csrf_token %}
             {{ form.as_p }}
             <button>search</button>
         </form>
-        <form action="{% url 'form' %}">
+        <form action="{% url 'form' %}" method="POST">
             {% csrf_token %}
 
             <button>Add Event</button>
@@ -16,28 +16,26 @@
             {% csrf_token %}
 
             {% if not search %}
-            {% for event in events %}
-                <div class="eventscontainer">
-                    <p class="myItems">{{ event.title }}</p>
-                    <p class="myItems">{{ event.date }}</p>
-                    <p class="myItems">{{ event.time }}</p>
-                    <p class="myItems">{{ event.location }}</p>
-                    <form action="{% url 'delete.html' %}" class="delete-form">
-                        {% csrf_token %}
-                        
-                        <button  class="delete-btn">Delete</button>
-                    </form>
-                </div>
-            {% endfor %}
+                {% for event in events %}
+                    <div class="eventscontainer" id="myForm">
+                        <p class="myItems">{{ event.title }}</p>
+                        <p class="myItems">{{ event.date }}</p>
+                        <p class="myItems">{{ event.time }}</p>
+                        <p class="myItems">{{ event.location }}</p>
+                        <form action="{% url 'deleting' %}" class="delete-form">
+                            {% csrf_token %}
+                            <button  class="delete-btn">Delete</button>
+                        </form>
+                    </div>
+                {% endfor %}
             {% elif search %}
-                <div class="eventscontainer">
+                <div class="eventscontainer" id="myForm2">
                     <p class="myItems">{{ search.title }}</p>
                     <p class="myItems">{{ search.date }}</p>
                     <p class="myItems">{{ search.time }}</p>
                     <p class="myItems">{{ search.location }}</p>
                     <form action="{% url 'deleting' %}" class="delete-form">
                         {% csrf_token %}
-
                         <button  class="delete-btn">Delete</button>
                     </form>
                 </div>
