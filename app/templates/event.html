@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% block content %}
 
@@ -22,7 +23,7 @@
                         <p class="myItems">{{ event.date }}</p>
                         <p class="myItems">{{ event.time }}</p>
                         <p class="myItems">{{ event.location }}</p>
-                        <form action="{% url 'deleting' %}" class="delete-form">
+                        <form action="{% url 'deleting' event.id %}" class="delete-form">
                             {% csrf_token %}
                             <button  class="delete-btn">Delete</button>
                         </form>
@@ -34,7 +35,7 @@
                     <p class="myItems">{{ search.date }}</p>
                     <p class="myItems">{{ search.time }}</p>
                     <p class="myItems">{{ search.location }}</p>
-                    <form action="{% url 'deleting' %}" class="delete-form">
+                    <form action="{% url 'deleting' event.id %}" class="delete-form">
                         {% csrf_token %}
                         <button  class="delete-btn">Delete</button>
                     </form>

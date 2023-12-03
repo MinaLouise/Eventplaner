@@ -1,6 +1,6 @@
 from django.http.request import HttpRequest
 from django.shortcuts import redirect, render
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseNotFound
 from datetime import datetime
 from app.forms import AddEventsForm, SearchEventForm
 from app.models import createEvent, read_all, delete, search_by_title
@@ -15,7 +15,7 @@ def form_page(request:HttpRequest)->HttpResponse:
         date = form.cleaned_data["date"]
         time = form.cleaned_data["time"]
         location = form.cleaned_data["location"]
-        createEvent(title, date, time, location)
+        createEvent(title, date, time, location).save()
         events = read_all()
         return render(request, "form.html", {"form":form, "events": events})
     else:
@@ -35,9 +35,12 @@ def events_page(request:HttpRequest)->HttpResponse:
         events = read_all()
         return render(request, "event.html", {"form":form, "events": events})
     
-def delete_event(request:HttpRequest, title)->HttpResponse:
-    if request.method == 'POST':
-        event = search_by_title(title=title)
-        event.delete()
-        return redirect('events')
-    return render(request, 'delete.html')
+def delete_event(request:HttpRequest, id)->HttpResponse:
+    # if title in events:
+        if request.method == 'POST':
+            event = delete(id=id)
+            event.delete()
+            return redirect('events')
+        return render(request, 'delete.html')
+    # else:
+    #     return HttpResponseNotFound('<h1>Event Not Found</h1>')
