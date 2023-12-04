@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="form">
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <a href="{% url 'events' %}">Cancel</a>
+        <button type="submit">Enter</button>
+    </form>
+</div>
+{% endblock content %}

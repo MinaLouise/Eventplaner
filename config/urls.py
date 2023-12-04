@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import form_page, events_page, delete_event
+from app.views import form_page, events_page, delete_event, update_event
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', events_page, name="events"),    
     path('form/', form_page, name="form"),
-    path('delete/<str:id>', delete_event, name="deleting")
+    path('delete/<str:id>', delete_event, name="deleting"),
+    path('update/<str:id>', update_event, name="update"),
 ]

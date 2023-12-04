@@ -27,6 +27,10 @@
                             {% csrf_token %}
                             <button  class="delete-btn">Delete</button>
                         </form>
+                        <form action="{% url 'update' event.id %}" class="update-form">
+                            {% csrf_token %}
+                            <button  class="update-btn">Update</button>
+                        </form>
                     </div>
                 {% endfor %}
             {% elif search %}
@@ -38,6 +42,10 @@
                     <form action="{% url 'deleting' event.id %}" class="delete-form">
                         {% csrf_token %}
                         <button  class="delete-btn">Delete</button>
+                    </form>
+                    <form action="{% url 'update' event.id %}" class="update-form">
+                        {% csrf_token %}
+                        <button  class="update-btn">Update</button>
                     </form>
                 </div>
             {% endif %}

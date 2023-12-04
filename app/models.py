@@ -26,8 +26,8 @@ def search_by_title(title):
     except Eventlist.DoesNotExist:
         return None
 
-def update(title, new_title, new_date, new_time, new_location):
-    event = Eventlist.objects.get(title=title)
+def update(id, new_title, new_date, new_time, new_location):
+    event = Eventlist.objects.get(id=id)
     event.title = new_title
     event.date = new_date
     event.time = new_time
