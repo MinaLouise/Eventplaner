@@ -19,10 +19,29 @@
             {% if not search %}
                 {% for event in events %}
                     <div class="eventscontainer" id="myForm">
-                        <p class="myItems">{{ event.title }}</p>
-                        <p class="myItems">{{ event.date }}</p>
-                        <p class="myItems">{{ event.time }}</p>
-                        <p class="myItems">{{ event.location }}</p>
+                        <div class="myItems">
+                            <p class="">{{ event.title }}</p>
+                            <p class="">{{ event.date }}</p>
+                            <p class="">{{ event.time }}</p>
+                            <p class="">{{ event.location }}</p>
+                            <form action="{% url 'deleting' event.id %}" class="delete-form">
+                                {% csrf_token %}
+                                <button  type="submit" class="delete-btn">Delete</button>
+                            </form>
+                            <form action="{% url 'update' event.id %}" class="update-form">
+                                {% csrf_token %}
+                                <button  class="update-btn">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% elif search %}
+                <div class="eventscontainer" id="myForm2">
+                    <div class="myItems">
+                        <p class="">{{ search.title }}</p>
+                        <p class="">{{ search.date }}</p>
+                        <p class="">{{ search.time }}</p>
+                        <p class="">{{ search.location }}</p>
                         <form action="{% url 'deleting' event.id %}" class="delete-form">
                             {% csrf_token %}
                             <button  class="delete-btn">Delete</button>
@@ -32,21 +51,6 @@
                             <button  class="update-btn">Update</button>
                         </form>
                     </div>
-                {% endfor %}
-            {% elif search %}
-                <div class="eventscontainer" id="myForm2">
-                    <p class="myItems">{{ search.title }}</p>
-                    <p class="myItems">{{ search.date }}</p>
-                    <p class="myItems">{{ search.time }}</p>
-                    <p class="myItems">{{ search.location }}</p>
-                    <form action="{% url 'deleting' event.id %}" class="delete-form">
-                        {% csrf_token %}
-                        <button  class="delete-btn">Delete</button>
-                    </form>
-                    <form action="{% url 'update' event.id %}" class="update-form">
-                        {% csrf_token %}
-                        <button  class="update-btn">Update</button>
-                    </form>
                 </div>
             {% endif %}
         </form>

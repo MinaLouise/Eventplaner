@@ -17,10 +17,10 @@ def form_page(request:HttpRequest)->HttpResponse:
         location = form.cleaned_data["location"]
         createEvent(title, date, time, location).save()
         events = read_all()
-        return render(request, "event.html", {"form":form, "events": events})
+        return render(request, "form.html", {"form":form, "events": events})
     else:
         events = read_all()
-        return render(request, "event.html", {"form":form, "events": events})
+        return render(request, "form.html", {"form":form, "events": events})
         
 
 def events_page(request:HttpRequest)->HttpResponse:
