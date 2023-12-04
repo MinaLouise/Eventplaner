@@ -6,7 +6,7 @@
         <form action="{% url 'events' %}" method="POST" class="searchTool">
             {% csrf_token %}
             {{ form.as_p }}
-            <button>search</button>
+            <button class="searchBtn">search</button>
         </form>
         <form action="{% url 'form' %}" method="POST">
             {% csrf_token %}
@@ -16,7 +16,7 @@
         <form  method="POST">
             {% csrf_token %}
 
-            {% if not search %}
+            {% if not search_title %}
                 {% for event in events %}
                     <div class="eventscontainer" id="myForm">
                         <div class="myItems">
@@ -35,22 +35,22 @@
                         </div>
                     </div>
                 {% endfor %}
-            {% elif search %}
+            {% elif search_title %}
                 <div class="eventscontainer" id="myForm2">
                     <div class="myItems">
-                        <p class="">{{ search.title }}</p>
-                        <p class="">{{ search.date }}</p>
-                        <p class="">{{ search.time }}</p>
-                        <p class="">{{ search.location }}</p>
-                        <form action="{% url 'deleting' event.id %}" class="delete-form">
-                            {% csrf_token %}
-                            <button  class="delete-btn">Delete</button>
-                        </form>
-                        <form action="{% url 'update' event.id %}" class="update-form">
-                            {% csrf_token %}
-                            <button  class="update-btn">Update</button>
-                        </form>
+                        <p class="">{{ search_title.title }}</p>
+                        <p class="">{{ search_title.date }}</p>
+                        <p class="">{{ search_title.time }}</p>
+                        <p class="">{{ search_title.location }}</p>
                     </div>
+                    <form action="{% url 'deleting' search_title.id %}" class="delete-form">
+                                {% csrf_token %}
+                                <button  type="submit" class="delete-btn">Delete</button>
+                            </form>
+                            <form action="{% url 'update' search_title.id %}" class="update-form">
+                                {% csrf_token %}
+                                <button  class="update-btn">Update</button>
+                            </form>
                 </div>
             {% endif %}
         </form>

@@ -37,10 +37,9 @@ def events_page(request:HttpRequest)->HttpResponse:
     
 def delete_event(request:HttpRequest, id)->HttpResponse:
         if request.method == 'POST':
-            event = delete(id=id)
-            event.delete()
+            delete(id)
             return redirect('events')
-        return render(request, 'delete.html')
+        return render(request, 'delete.html', {"events":events})
 
 def update_event(request:HttpRequest, id)->HttpResponse:
         form = AddEventsForm(request.POST)

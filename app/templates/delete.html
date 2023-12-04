@@ -3,11 +3,13 @@
 {% block content %}
 
     <div class="events">
-        <p>DELETE PAGE</p>
-        <form method="POST">
-            {% csrf_token %}
-            <a href="{% url 'events' %}">Cancel</a>
-            <button href="{% url 'events' %}" type="submit">Confirm</button>
-        </form>
+        <div>
+            <p>DELETE CONFIRMATION</p>
+            <form method="POST">
+                {% csrf_token %}
+                <a href="{% url 'events' %}">Cancel</a>
+                <button href="{% url 'events' %}" type="submit">Confirm</button>
+            </form>
+        </div>
     </div>
 {% endblock content %}

@@ -8,7 +8,7 @@ body {
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    box-shadow: .5em .2em 10px rgba(13, 73, 203, 0.801);
+    box-shadow: .5em .2em 10px rgba(107, 15, 61, 0.801);
     text-align: center;
 }
 
@@ -40,3 +40,15 @@ form button:hover {
     color: white;
     border-radius: 10px;
 }  
+.events{
+    padding: 20px;
+    text-align: center;
+}
+
+.searchTool{
+    padding: 20px;
+}
+
+.delete-form{
+    padding: 10px;
+}
