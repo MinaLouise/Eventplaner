@@ -17,7 +17,7 @@ def form_page(request:HttpRequest)->HttpResponse:
         location = form.cleaned_data["location"]
         createEvent(title, date, time, location).save()
         events = read_all()
-        return render(request, "event.html", {"form":form, "events": events})
+        return render(request, "form.html", {"form":form, "events": events})
     else:
         events = read_all()
         return render(request, "event.html", {"form":form, "events": events})
@@ -27,10 +27,10 @@ def events_page(request:HttpRequest)->HttpResponse:
     form = SearchEventForm(request.POST)
     if form.is_valid():
         searchtitle = form.cleaned_data["searchtitle"]
-        search_title = search_by_title(searchtitle)
+        events = search_by_title(searchtitle)
         events = read_all()
             
-        return render(request, "event.html", {"form":form, "events": events, "search_title": search_title})
+        return render(request, "event.html", {"form":form, "events": events})
     else:
         events = read_all()
         return render(request, "event.html", {"form":form, "events": events})
@@ -43,6 +43,7 @@ def delete_event(request:HttpRequest, id)->HttpResponse:
         return render(request, 'delete.html')
 
 def update_event(request:HttpRequest, id)->HttpResponse:
+    if request.method == 'POST':
         form = AddEventsForm(request.POST)
         if form.is_valid():
             new_title = form.cleaned_data["title"]
@@ -51,7 +52,7 @@ def update_event(request:HttpRequest, id)->HttpResponse:
             new_location = form.cleaned_data["location"]
             events = update(id, new_title, new_date, new_time, new_location)
             events = read_all()
-            return render(request, "event.html", {"form":form, "events": events})
+            return render(request, "update.html", {"form":form, "events": events})
         else:
             events = read_all()
-            return render(request, "update.html", {"form":form, "events": events})
+            return render(request, "event.html", {"form":form, "events": events})

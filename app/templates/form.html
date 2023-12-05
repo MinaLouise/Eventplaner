@@ -7,7 +7,7 @@
 
         {{ form.as_p }}
 
-        <button type="submit">Enter</button>
+        <button action="{% url 'form' %}" type="submit">Enter</button>
     </form>
 
     <form action="{% url 'events' %}" method="POST">
