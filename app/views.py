@@ -27,10 +27,10 @@ def events_page(request:HttpRequest)->HttpResponse:
     form = SearchEventForm(request.POST)
     if form.is_valid():
         searchtitle = form.cleaned_data["searchtitle"]
-        events = search_by_title(searchtitle)
+        search_title = search_by_title(searchtitle)
         events = read_all()
             
-        return render(request, "event.html", {"form":form, "events": events})
+        return render(request, "event.html", {"form":form, "events": events, "search_title": search_title})
     else:
         events = read_all()
         return render(request, "event.html", {"form":form, "events": events})
@@ -42,7 +42,6 @@ def delete_event(request:HttpRequest, id)->HttpResponse:
         return render(request, 'delete.html', {"events":events})
 
 def update_event(request:HttpRequest, id)->HttpResponse:
-    if request.method == 'POST':
         form = AddEventsForm(request.POST)
         if form.is_valid():
             new_title = form.cleaned_data["title"]
@@ -51,7 +50,7 @@ def update_event(request:HttpRequest, id)->HttpResponse:
             new_location = form.cleaned_data["location"]
             events = update(id, new_title, new_date, new_time, new_location)
             events = read_all()
-            return render(request, "update.html", {"form":form, "events": events})
+            return render(request, "event.html", {"form":form, "events": events})
         else:
             events = read_all()
-            return render(request, "event.html", {"form":form, "events": events})
+            return render(request, "update.html", {"form":form, "events": events})

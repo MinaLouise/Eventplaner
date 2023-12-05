@@ -19,7 +19,7 @@
             {% if not search_title %}
                 {% for event in events %}
                     <div class="eventscontainer" id="myForm">
-                        <div class="myItems">
+                        <table class="myItems">
                             <p class="">{{ event.title }}</p>
                             <p class="">{{ event.date }}</p>
                             <p class="">{{ event.time }}</p>
@@ -32,27 +32,31 @@
                                 {% csrf_token %}
                                 <button  class="update-btn">Update</button>
                             </form>
-                        </div>
+                        </table>
                     </div>
                 {% endfor %}
             {% elif search_title %}
                 <div class="eventscontainer" id="myForm2">
-                    <div class="myItems">
+                    <table class="myItems">
                         <p class="">{{ search_title.title }}</p>
                         <p class="">{{ search_title.date }}</p>
                         <p class="">{{ search_title.time }}</p>
                         <p class="">{{ search_title.location }}</p>
-                    </div>
+                    </table>
                     <form action="{% url 'deleting' search_title.id %}" class="delete-form">
-                                {% csrf_token %}
-                                <button  type="submit" class="delete-btn">Delete</button>
-                            </form>
-                            <form action="{% url 'update' search_title.id %}" class="update-form">
-                                {% csrf_token %}
-                                <button  class="update-btn">Update</button>
-                            </form>
+                        {% csrf_token %}                                <button  type="submit" class="delete-btn">Delete</button>
+                    </form>
+                    <form action="{% url 'update' search_title.id %}" class="update-form">
+                        {% csrf_token %}
+                    <button  class="update-btn">Update</button>
+                    </form>
                 </div>
             {% endif %}
         </form>
     </div>
+    <footer class="footer">
+        <div class="socialscontainer">
+            <a id="scrollToTop" href="#" onclick="scrollToTop(); return false;">UP</a>
+        </div>
+    </footer>
 {% endblock content %}
