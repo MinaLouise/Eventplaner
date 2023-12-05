@@ -1,5 +1,5 @@
 body {
-    background: rgb(255, 251, 246);
+    background: rgb(242, 203, 155);
     position: static;
 }
 
@@ -57,7 +57,7 @@ form button:hover {
     list-style: none;
 }
 .footer{
-    background-color: #FF78C4;
+    background-color: #8378ff;
     font-family: 'Poppins', sans-serif;
     line-height: 1.5;
     border-radius: 300px;
@@ -67,7 +67,7 @@ form button:hover {
     display: block;
     text-align: center;
     padding: 10px;
-    background-color: #FF78C4;
+    background-color: rgb(242, 203, 155);
     color: #050008;
     text-decoration: none;
     border-radius: 4px;
@@ -76,4 +76,8 @@ form button:hover {
   
 #scrollToTop:hover {
     background-color: #5e81fd;
+}
+
+.errorlist{
+    list-style-type: none;
 }

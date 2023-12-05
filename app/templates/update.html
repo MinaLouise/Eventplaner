@@ -1,13 +1,13 @@
-
 {% extends 'base.html' %}
 {% block content %}
-<div class="form">
-    <form method="POST">
+<div class="form" name="span">
+    <form method="POST" id="form" onsubmit="return validateForm()">
         {% csrf_token %}
 
         {{ form.as_p }}
         <a href="{% url 'events' %}">Cancel</a>
         <button type="submit">Enter</button>
     </form>
+    <p id="errorMessage" style="display: none; color: red;"></p>
 </div>
 {% endblock content %}
